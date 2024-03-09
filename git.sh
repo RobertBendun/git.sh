@@ -37,8 +37,10 @@ function subcommand_cat_file() {
 	case "$type" in
 		blob)
 			tail -qzn +2 "$object" | head --bytes=$size
+			rm "$object"
 			;;
 		*)
+			rm "$object"
 			2>&1 echo "$(basename "$0"): error: object has unknown type $type"
 			exit 2
 		;;
