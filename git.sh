@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e -o pipefail
 
@@ -36,7 +36,7 @@ function subcommand_cat_file() {
 
 	case "$type" in
 		blob)
-			tail -qzn +2 "$object"
+			tail -qzn +2 "$object" | head --bytes=$size
 			;;
 		*)
 			2>&1 echo "$(basename "$0"): error: object has unknown type $type"
